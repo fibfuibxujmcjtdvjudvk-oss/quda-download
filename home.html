@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>趣嗒同行 - 探索有趣的生活</title>
+    <meta name="description" content="趣嗒同行 - 年轻人的社交新方式，组局约伴、游戏搭子、城市玩伴，找到志同道合的朋友">
+    <meta name="keywords" content="趣嗒同行,社交,组局,搭子,玩伴,交友">
+    <link rel="icon" href="./assets/tubiao.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #61DCF2;
+            --primary-dark: #4ECDC4;
+            --text-dark: #1a1a2e;
+            --text-gray: #666;
+            --text-light: #999;
+            --bg-light: #f8fffe;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: #fff;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 顶部导航 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+        }
+
+        .nav-logo span {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            padding: 8px 16px;
+            font-size: 14px;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: rgba(97, 220, 242, 0.1);
+        }
+
+        .nav-download {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(97, 220, 242, 0.3);
+        }
+
+        .nav-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(97, 220, 242, 0.4);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            min-height: 100vh;
+            padding: 100px 24px 60px;
+            background: linear-gradient(180deg, #e8f8f5 0%, #fff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 20%, rgba(97, 220, 242, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: rgba(97, 220, 242, 0.15);
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--primary-dark);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '🎉';
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-dark) 0%, #2d3436 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 28px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(97, 220, 242, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(97, 220, 242, 0.45);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: #fff;
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 28px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid #eee;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* 功能特性区域 */
+        .features {
+            padding: 80px 24px;
+            background: #fff;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(97, 220, 242, 0.1);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--text-gray);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(97, 220, 242, 0.15);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            margin-bottom: 16px;
+            object-fit: contain;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* 亮点区域 */
+        .highlights {
+            padding: 80px 24px;
+            background: linear-gradient(180deg, #fff 0%, var(--bg-light) 100%);
+        }
+
+        .highlight-list {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 24px;
+            background: #fff;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s;
+        }
+
+        .highlight-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(97, 220, 242, 0.12);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .highlight-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .highlight-content p {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* CTA 区域 */
+        .cta {
+            padding: 80px 24px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .cta-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 32px;
+        }
+
+        .cta .btn-primary {
+            background: #fff;
+            color: var(--primary);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta .btn-primary:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 底部 */
+        .footer {
+            padding: 48px 24px;
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+        }
+
+        .footer-logo span {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-company {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            max-width: 400px;
+            margin: 0 auto 24px;
+        }
+
+        .footer-company p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+        }
+
+        .footer-company p:first-child {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0 16px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 80px 20px 40px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-desc {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .stat-num {
+                font-size: 24px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="./assets/tubiao.png" alt="趣嗒同行">
+            <span>趣嗒同行</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active">首页</a>
+            <a href="#features" class="nav-link">功能</a>
+            <a href="#about" class="nav-link">关于</a>
+        </div>
+        <a href="./index.html" class="nav-download">下载APP</a>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">全新上线，限时体验</div>
+            <h1 class="hero-title">找搭子，上<span>趣嗒同行</span></h1>
+            <p class="hero-desc">年轻人的社交新方式<br>组局约伴、游戏搭子、城市玩伴，找到志同道合的朋友</p>
+            <div class="hero-buttons">
+                <a href="./index.html" class="btn-primary">
+                    <span>📱</span> 立即下载
+                </a>
+                <a href="#features" class="btn-secondary">
+                    <span>✨</span> 了解更多
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">10W+</div>
+                    <div class="stat-label">活跃用户</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">50W+</div>
+                    <div class="stat-label">成功组局</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">99%</div>
+                    <div class="stat-label">好评率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特性 -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <div class="section-tag">核心功能</div>
+            <h2 class="section-title">发现更多玩法</h2>
+            <p class="section-desc">多种社交场景，总有一款适合你</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <img class="feature-icon" src="./static/zujuyueban.png" alt="组局约伴">
+                <h3 class="feature-title">组局约伴</h3>
+                <p class="feature-desc">发起活动，邀请志同道合的搭子一起参与</p>
+            </div>
+            <div class="feature-card">
+                <img class="feature-icon" src="./static/youxidazi.png" alt="游戏搭子">
+                <h3 class="feature-title">游戏搭子</h3>
+                <p class="feature-desc">找到靠谱队友，开黑上分不再孤单</p>
+            </div>
+            <div class="feature-card">
+                <img class="feature-icon" src="./static/chengshiwanban.png" alt="城市玩伴">
+                <h3 class="feature-title">城市玩伴</h3>
+                <p class="feature-desc">探索同城好去处，结识身边新朋友</p>
+            </div>
+            <div class="feature-card">
+                <img class="feature-icon" src="./static/qudaxingqiu.png" alt="趣嗒星球">
+                <h3 class="feature-title">趣嗒星球</h3>
+                <p class="feature-desc">分享生活点滴，发现有趣的灵魂</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 亮点介绍 -->
+    <section class="highlights" id="about">
+        <div class="section-header">
+            <div class="section-tag">为什么选择我们</div>
+            <h2 class="section-title">安全可靠的社交平台</h2>
+            <p class="section-desc">我们致力于打造最安全、最有趣的社交体验</p>
+        </div>
+        <div class="highlight-list">
+            <div class="highlight-item">
+                <img class="highlight-icon" src="./static/zhenshiyonghu.png" alt="真实用户">
+                <div class="highlight-content">
+                    <h4>真实用户</h4>
+                    <p>实名认证保障，拒绝虚假信息，每一位用户都经过严格审核</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <img class="highlight-icon" src="./static/anquankekao.png" alt="安全可靠">
+                <div class="highlight-content">
+                    <h4>安全可靠</h4>
+                    <p>隐私保护，聊天加密，7×24小时安全监控，安心交友</p>
+                </div>
+            </div>
+            <div class="highlight-item">
+                <img class="highlight-icon" src="./static/jingzhunpipei.png" alt="精准匹配">
+                <div class="highlight-content">
+                    <h4>精准匹配</h4>
+                    <p>智能算法推荐，基于兴趣爱好，为你找到最合适的搭子</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">开启你的趣嗒之旅</h2>
+        <p class="cta-desc">下载趣嗒同行，遇见有趣的人</p>
+        <a href="./index.html" class="btn-primary">
+            <span>🚀</span> 立即下载体验
+        </a>
+    </section>
+
+    <!-- 底部 -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="./assets/tubiao.png" alt="趣嗒同行">
+            <span>趣嗒同行</span>
+        </div>
+        <div class="footer-links">
+            <a href="./index.html">下载APP</a>
+            <a href="./privacy.html">隐私政策</a>
+            <a href="./terms.html">用户协议</a>
+            <a href="mailto:support@qovd.cn">联系我们</a>
+        </div>
+        <div class="footer-company">
+            <p>上海万程乐娱文化传媒有限公司</p>
+            <p>统一社会信用代码：91310230MAC5YM2R2A</p>
+            <p>地址：上海市崇明区北沿公路2111号3幢(上海崇明森林旅游园区)</p>
+        </div>
+        <p class="copyright">© 2025 趣嗒同行 All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
