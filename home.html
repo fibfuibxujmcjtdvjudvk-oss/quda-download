@@ -106,7 +106,8 @@
         .hero {
             min-height: 100vh;
             padding: 100px 24px 60px;
-            background: linear-gradient(180deg, #e8f8f5 0%, #fff 100%);
+            background: url('./static/beijing.png') no-repeat center top;
+            background-size: cover;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -114,23 +115,6 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(97, 220, 242, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%);
-            animation: bgFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes bgFloat {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-2%, 2%) rotate(5deg); }
         }
 
         .hero-content {
