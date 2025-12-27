@@ -259,6 +259,53 @@
             margin-top: 4px;
         }
 
+        /* 产品展示区域 */
+        .showcase {
+            padding: 80px 0;
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+
+        .showcase .section-header {
+            padding: 0 24px;
+        }
+
+        .showcase-slider {
+            margin-top: 40px;
+            overflow: hidden;
+        }
+
+        .showcase-track {
+            display: flex;
+            gap: 20px;
+            padding: 0 24px;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .showcase-item {
+            flex-shrink: 0;
+            width: 200px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.05);
+        }
+
+        .showcase-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         /* 功能特性区域 */
         .features {
             padding: 80px 24px;
@@ -560,16 +607,54 @@
             </div>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-num">10W+</div>
+                    <div class="stat-num">3W+</div>
                     <div class="stat-label">活跃用户</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">50W+</div>
+                    <div class="stat-num">1W+</div>
                     <div class="stat-label">成功组局</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-num">99%</div>
+                    <div class="stat-num">97%</div>
                     <div class="stat-label">好评率</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品展示 -->
+    <section class="showcase">
+        <div class="section-header">
+            <div class="section-tag">产品预览</div>
+            <h2 class="section-title">精彩界面抢先看</h2>
+            <p class="section-desc">简洁美观的设计，流畅的使用体验</p>
+        </div>
+        <div class="showcase-slider">
+            <div class="showcase-track">
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan1.png" alt="趣嗒同行界面1">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan2.png" alt="趣嗒同行界面2">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan3.png" alt="趣嗒同行界面3">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan4.png" alt="趣嗒同行界面4">
+                </div>
+                <!-- 复制一份用于无缝滚动 -->
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan1.png" alt="趣嗒同行界面1">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan2.png" alt="趣嗒同行界面2">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan3.png" alt="趣嗒同行界面3">
+                </div>
+                <div class="showcase-item">
+                    <img src="./static/xuanchuan4.png" alt="趣嗒同行界面4">
                 </div>
             </div>
         </div>
@@ -610,8 +695,8 @@
     <section class="highlights" id="about">
         <div class="section-header">
             <div class="section-tag">为什么选择我们</div>
-            <h2 class="section-title">安全可靠的社交平台</h2>
-            <p class="section-desc">我们致力于打造最安全、最有趣的社交体验</p>
+            <h2 class="section-title">安全无忧·玩乐无忧·活动无忧</h2>
+            <p class="section-desc">7×24小时客服在线，我们致力于打造最安全、最有趣的社交体验</p>
         </div>
         <div class="highlight-list">
             <div class="highlight-item">
@@ -641,7 +726,7 @@
     <!-- CTA -->
     <section class="cta">
         <h2 class="cta-title">开启你的趣嗒之旅</h2>
-        <p class="cta-desc">下载趣嗒同行，遇见有趣的人</p>
+        <p class="cta-desc">下载趣嗒同行，探索有趣的生活~</p>
         <a href="./index.html" class="btn-primary">
             <img src="./static/lijixiazaitiyan.png" alt="" class="btn-img-icon"> 立即下载体验
         </a>
@@ -664,7 +749,7 @@
             <p>统一社会信用代码：91310230MAC5YM2R2A</p>
             <p>地址：上海市崇明区北沿公路2111号3幢(上海崇明森林旅游园区)</p>
         </div>
-        <p class="copyright">© 2025 趣嗒同行 All Rights Reserved</p>
+        <p class="copyright">© 2026 趣嗒同行 All Rights Reserved</p>
     </footer>
 
     <script>
