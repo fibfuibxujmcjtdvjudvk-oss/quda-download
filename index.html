@@ -358,6 +358,127 @@
             color: #bbb;
         }
 
+        /* 下载弹窗 */
+        .download-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .download-modal.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 24px;
+            padding: 32px 24px;
+            max-width: 320px;
+            width: 100%;
+            text-align: center;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(97, 220, 242, 0.3);
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .modal-info {
+            background: #f8fffe;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .modal-info-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .modal-info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .modal-info-item span:last-child {
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .modal-btn.primary {
+            background: linear-gradient(135deg, #61DCF2 0%, #4ECDC4 100%);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(97, 220, 242, 0.35);
+        }
+
+        .modal-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(97, 220, 242, 0.45);
+        }
+
+        .modal-btn.secondary {
+            background: #f5f5f7;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .modal-btn.secondary:hover {
+            background: #eee;
+        }
+
         /* 响应式 */
         @media (max-width: 380px) {
             .hero-section {
@@ -470,6 +591,31 @@
         </div>
     </main>
 
+    <!-- 下载确认弹窗 -->
+    <div class="download-modal" id="downloadModal">
+        <div class="modal-content">
+            <img class="modal-icon" src="./assets/tubiao.png" alt="趣嗒同行">
+            <h3 class="modal-title">下载趣嗒同行</h3>
+            <p class="modal-subtitle">即将开始下载安装包<br>请在下载完成后手动安装</p>
+            <div class="modal-info">
+                <div class="modal-info-item">
+                    <span>应用名称</span>
+                    <span>趣嗒同行</span>
+                </div>
+                <div class="modal-info-item">
+                    <span>版本</span>
+                    <span>v1.0.0</span>
+                </div>
+                <div class="modal-info-item">
+                    <span>大小</span>
+                    <span>约 126 MB</span>
+                </div>
+            </div>
+            <button class="modal-btn primary" id="confirmDownload">立即下载</button>
+            <button class="modal-btn secondary" id="cancelDownload">取消</button>
+        </div>
+    </div>
+
     <!-- 底部 -->
     <footer class="footer">
         <div class="footer-links">
@@ -481,12 +627,43 @@
     </footer>
 
     <script>
-        // iOS 未上架提示
-        document.getElementById('iosBtn').addEventListener('click', function(e) {
+        const downloadUrl = 'https://github.com/fibfuibxujmcjtdvjudvk-oss/quda-download/releases/download/v1.0.0/__UNI__6AF0E4D__20251227232216.apk';
+        const modal = document.getElementById('downloadModal');
+        const androidBtn = document.getElementById('androidBtn');
+        const iosBtn = document.getElementById('iosBtn');
+        const confirmBtn = document.getElementById('confirmDownload');
+        const cancelBtn = document.getElementById('cancelDownload');
+
+        // Android 下载按钮
+        androidBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            if (confirm('iOS 版本正在开发中，敬请期待！\n\n点击确定下载 Android 版本体验')) {
-                document.getElementById('androidBtn').click();
+            modal.classList.add('show');
+        });
+
+        // 确认下载
+        confirmBtn.addEventListener('click', function() {
+            window.location.href = downloadUrl;
+            setTimeout(() => {
+                modal.classList.remove('show');
+            }, 500);
+        });
+
+        // 取消下载
+        cancelBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+        });
+
+        // 点击遮罩关闭
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.remove('show');
             }
+        });
+
+        // iOS 未上架提示
+        iosBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.classList.add('show');
         });
     </script>
 </body>
