@@ -109,6 +109,12 @@
             letter-spacing: 2px;
         }
 
+        .app-title-img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 12px;
+        }
+
         .app-slogan {
             font-size: 16px;
             color: rgba(255, 255, 255, 0.95);
@@ -240,6 +246,20 @@
             display: block;
         }
 
+        .feature-icon-img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 10px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .btn-icon-img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+        }
+
         .feature-name {
             font-size: 12px;
             color: #666;
@@ -303,6 +323,125 @@
         .qrcode-tip {
             font-size: 13px;
             color: #888;
+        }
+
+        /* 亮点介绍 */
+        .highlights-section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a2e;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .highlight-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .highlight-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 8px 24px rgba(97, 220, 242, 0.15);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #61DCF2 0%, #4ECDC4 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .highlight-content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .highlight-content p {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        /* 用户评价 */
+        .reviews-section {
+            margin-bottom: 24px;
+        }
+
+        .review-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .review-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .review-stars {
+            font-size: 12px;
+            letter-spacing: -2px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            font-style: italic;
         }
 
         /* 版本信息 */
@@ -516,7 +655,7 @@
             <img class="app-icon" src="./assets/tubiao.png" alt="趣嗒同行">
             <span class="app-badge">NEW</span>
         </div>
-        <h1 class="app-name">趣嗒同行</h1>
+        <img class="app-title-img" src="./static/biaoti.png" alt="趣嗒同行">
         <p class="app-slogan">探索有趣的生活~</p>
     </section>
 
@@ -526,14 +665,14 @@
         <div class="download-card">
             <h2 class="card-title">立即下载体验</h2>
             <a href="https://github.com/fibfuibxujmcjtdvjudvk-oss/quda-download/releases/download/v1.0.0/__UNI__6AF0E4D__20251227232216.apk" class="download-btn android" id="androidBtn">
-                <span class="btn-icon">📱</span>
+                <img class="btn-icon-img" src="./static/anzhuo.png" alt="Android">
                 <div class="btn-text">
                     <div class="btn-title">Android 下载</div>
                     <div class="btn-subtitle">适用于安卓手机</div>
                 </div>
             </a>
             <a href="#" class="download-btn ios" id="iosBtn">
-                <span class="btn-icon">🍎</span>
+                <img class="btn-icon-img" src="./static/apple.png" alt="iOS">
                 <div class="btn-text">
                     <div class="btn-title">App Store</div>
                     <div class="btn-subtitle">即将上线，敬请期待</div>
@@ -545,42 +684,58 @@
         <div class="features-section">
             <div class="features-grid">
                 <div class="feature-item">
-                    <span class="feature-icon">🎮</span>
-                    <span class="feature-name">组局交友</span>
+                    <img class="feature-icon-img" src="./static/zujuyueban.png" alt="组局约伴">
+                    <span class="feature-name">组局约伴</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">💬</span>
-                    <span class="feature-name">即时聊天</span>
+                    <img class="feature-icon-img" src="./static/youxidazi.png" alt="游戏搭子">
+                    <span class="feature-name">游戏搭子</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🎁</span>
-                    <span class="feature-name">趣味活动</span>
+                    <img class="feature-icon-img" src="./static/chengshiwanban.png" alt="城市玩伴">
+                    <span class="feature-name">城市玩伴</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">👥</span>
-                    <span class="feature-name">同城社交</span>
+                    <img class="feature-icon-img" src="./static/qudaxingqiu.png" alt="趣嗒星球">
+                    <span class="feature-name">趣嗒星球</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🌟</span>
-                    <span class="feature-name">玩伴匹配</span>
+                    <img class="feature-icon-img" src="./static/xiaoxiliaotian.png" alt="消息聊天">
+                    <span class="feature-name">消息聊天</span>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🎉</span>
-                    <span class="feature-name">精彩生活</span>
+                    <img class="feature-icon-img" src="./static/wanlefaxian.png" alt="玩乐发现">
+                    <span class="feature-name">玩乐发现</span>
                 </div>
             </div>
         </div>
 
-        <!-- 二维码 -->
-        <div class="qrcode-section">
-            <div class="qrcode-header">
-                <span class="qrcode-icon">📲</span>
-                <span class="qrcode-title">扫码下载</span>
+        <!-- 亮点介绍 -->
+        <div class="highlights-section">
+            <h3 class="section-title">为什么选择趣嗒同行？</h3>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-icon">👥</div>
+                    <div class="highlight-content">
+                        <h4>真实用户</h4>
+                        <p>实名认证保障，拒绝虚假信息</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">🛡️</div>
+                    <div class="highlight-content">
+                        <h4>安全可靠</h4>
+                        <p>隐私保护，聊天加密，安心交友</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">✨</div>
+                    <div class="highlight-content">
+                        <h4>精准匹配</h4>
+                        <p>智能推荐志同道合的搭子</p>
+                    </div>
+                </div>
             </div>
-            <div class="qrcode-box">
-                <img src="./assets/qrcode.png" alt="下载二维码" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=qrcode-placeholder>二维码<br>生成中...</div>'">
-            </div>
-            <p class="qrcode-tip">使用微信或浏览器扫码下载</p>
         </div>
 
         <!-- 版本信息 -->
